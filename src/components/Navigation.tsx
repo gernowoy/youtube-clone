@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Stack } from "@mui/material";
 import { logo } from "../utils/constants";
+import SearchBar from "./SearchBar";
 
 const Navigation = () => {
   return (
@@ -12,13 +13,13 @@ const Navigation = () => {
         position: "sticky",
         top: 0,
         justifyContent: "space-between",
-        backgroundColor: "#000",
+        backgroundColor: "#181A20",
       }}
     >
-      <Link to='/' style={{display: 'flex', alignItems: 'center'}}>
-        <img src={logo} alt="logo" height={45} />
+      <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+        <img src={logo} alt="logo" height={55} />
       </Link>
-      this is Navigation
+      <SearchBar />
     </Stack>
   );
 };

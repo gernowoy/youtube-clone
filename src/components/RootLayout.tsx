@@ -6,7 +6,7 @@ import Navbar from "./Navigation";
 const RootLayout = () => {
   
   return (
-    <Box sx={{ backgroundColor: "#0f3" }}>
+    <Box sx={{ backgroundColor: "#181A20" }}>
       <Navbar />
       <main>
         <Outlet />
