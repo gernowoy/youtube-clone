@@ -1,7 +1,58 @@
-const Feed = () => {
-  return (
-    <div>Feed</div>
-  )
-}
+import { useEffect, useState } from "react";
+import { fetchAPI } from "../utils/fetchAPI";
+import { Stack, Box, Typography } from "@mui/material";
+import { CategoryName } from "../types/types";
+import {Video} from '../types/types'
+import Sidebar from "./Sidebar";
+import Videos from "./Videos";
 
-export default Feed
+const Feed = () => {
+  const [selectedCategory, setSelectedCategory] = useState<CategoryName>("New");
+  const [videos, setVideos] = useState<Video[]>([]);
+
+  useEffect(() => {
+    fetchAPI(`search?part=snippet&q=${selectedCategory}`).then((data) => {
+      setVideos(data.items);
+      console.dir(data.items);
+    });
+  }, [selectedCategory]);
+
+  return (
+    <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
+      <Box
+        sx={{
+          height: { sx: "auto", md: "92vh" },
+          borderRight: "1px solid #3e3e3e",
+          px: { sx: 0, md: 2 },
+        }}
+      >
+        <Sidebar
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+
+        <Typography
+          className="copyright"
+          variant="body2"
+          sx={{ mt: 2, color: "#fff" }}
+        >
+          Copyright © 2024 Copyleft
+        </Typography>
+      </Box>
+      <Box p={2} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          mb={2}
+          sx={{ color: "white" }}
+        >
+          {selectedCategory} <span style={{ color: "#FC1503" }}>videos</span>
+        </Typography>
+
+        <Videos videos={videos} />
+      </Box>
+    </Stack>
+  );
+};
+
+export default Feed;
