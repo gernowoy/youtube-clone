@@ -13,7 +13,6 @@ const Feed = () => {
   useEffect(() => {
     fetchAPI(`search?part=snippet&q=${selectedCategory}`).then((data) => {
       setVideos(data.items);
-      console.dir(data.items);
     });
   }, [selectedCategory]);
 

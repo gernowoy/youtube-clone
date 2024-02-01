@@ -12,7 +12,8 @@ export interface Video {
   kind: string;
   id: ID;
   snippet: Snippet;
-  statistics?: { subscriberCount?: string };
+  statistics: { subscriberCount: string; viewCount: string, likeCount: string };
+  contentDetails: unknown
 }
 
 export interface ID {
